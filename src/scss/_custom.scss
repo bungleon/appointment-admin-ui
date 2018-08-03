@@ -1,0 +1,18 @@
+.pagination a.page-link,
+.dropdown-item,
+.badge-btn,
+.nav-link {
+  cursor: pointer;
+}
+.wc-date-container[_ngcontent-c0] {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  color: #3e515b;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid #c2cfd6 !important;
+  border-radius: 0;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
