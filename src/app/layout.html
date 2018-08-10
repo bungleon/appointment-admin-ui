@@ -1,0 +1,43 @@
+
+<div class="text-center">center</div>
+
+<div class="app-body">
+  <div class="sidebar">
+    <nav class="sidebar-nav">
+      <ul class="nav">
+        <li class="nav-item">
+          <a routerLink="/login">Login</a>
+        </li>
+        <li class="divider"></li>
+        <li class="nav-item">
+          <a routerLink="/merchant">Merchant</a>
+        </li>
+        <li class="divider"></li>
+        <li class="nav-item">
+          <a routerLink="/user">User</a>
+        </li>
+        <li class="divider"></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+      <router-outlet></router-outlet>
+      <!-- Breadcrumb Menu-->
+      <li class="breadcrumb-menu d-md-down-none"></li>
+    </ol>
+
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.conainer-fluid -->
+  </main>
+
+</div>
+
+<footer class="app-footer">
+  <a href="#">Appointment</a> &copy; 2018
+</footer>
