@@ -1,0 +1,36 @@
+<div class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-group mb-0">
+          <div class="card p-4">
+            <div class="card-body">
+              <h1>Login</h1>
+              <form (submit)="login()">
+                <div class="input-group mb-3">
+                  <span class="input-group-addon"><i class="icon-user"></i></span>
+                  <input type="email" class="form-control" placeholder="Email" [(ngModel)]="form.email" name="email" required="required">
+                </div>
+                <div class="input-group mb-4">
+                  <span class="input-group-addon"><i class="icon-lock"></i></span>
+                  <input type="password" class="form-control" placeholder="Password" [(ngModel)]="form.password" name="password" required="required">
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-4">
+                      <span *ngIf="!loading">Login</span>
+                      <i class="fa fa-spinner fa-pulse" *ngIf="loading"></i>
+                    </button>
+                  </div>
+                  <div class="col-6 text-right">
+                    <div class="alert alert-danger" *ngIf="alert">{{alert}}</div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

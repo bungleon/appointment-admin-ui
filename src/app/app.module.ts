@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from './app.routing.module';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {AppRoutingModule} from './app.routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [{
     provide: LocationStrategy,

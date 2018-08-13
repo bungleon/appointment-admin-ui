@@ -1,10 +1,20 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
-  template: `
-    <h1>Login</h1>
-  `,
+  templateUrl: 'login.component.html'
 })
 export class LoginComponent {
+  form: any = {
+    'email': '',
+    'password': ''
+  };
+  loading = false;
+  alert = '';
+
+  constructor() {}
+
+  login() {
+    console.log(this.form);
+  }
+
 }
