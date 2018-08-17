@@ -1,5 +1,5 @@
 <div class="page-wrapper chiller-theme toggled">
-  <nav id="sidebar" class="sidebar-wrapper">
+  <nav id="sidebar" class="sidebar-wrapper"  *ngIf="admin">
     <div class="sidebar-content">
       <div id="toggle-sidebar">
         <div></div>
@@ -10,16 +10,12 @@
         <a href="#">Appointment UI</a>
       </div>
       <div class="sidebar-header">
-        <div class="user-pic">
-          <img class="img-responsive img-rounded"
-               src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/bootstrap4/assets/img/user.jpg"
-               alt="User picture">
-        </div>
-        <div class="user-info">
-                        <span class="user-name">Osman
-                            <strong>Bey</strong>
+
+        <div class="user-info" *ngIf="jwt">
+                        <span class="user-name">
+                          {{jwt.name}}
                         </span>
-          <span class="user-role">ADMIN</span>
+          <span class="user-role">{{jwt.role}}</span>
           <span class="user-status">
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
@@ -34,7 +30,7 @@
             <span>General</span>
           </li>
           <li>
-            <a routerLink="/login">
+            <a routerLink="/dashboard">
               <i class="fa fa-folder"></i>
               <span>Dashboard</span>
             </a>
@@ -142,20 +138,17 @@
     </div>
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
-      <a href="#">
-        <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
+      <a>
+
+      </a>
+      <a>
+
+      </a>
+      <a>
+
       </a>
       <a href="#">
-        <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
-      </a>
-      <a href="#">
-        <i class="fa fa-power-off"></i>
+        <i class="fa fa-power-off"  (click)="logout()"></i>
       </a>
     </div>
   </nav>

@@ -429,18 +429,18 @@ body {
 /*-----------------------------chiller-theme-------------------------------------------------*/
 
 .chiller-theme .sidebar-wrapper {
-  background: #1d1d1d;
+  background: #e40b78;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-header,
 .chiller-theme .sidebar-wrapper .sidebar-search,
 .chiller-theme .sidebar-wrapper .sidebar-menu {
-  border-top: 1px solid #2b2b2b;
+  border-top: 1px solid #ef3f9e;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
 .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
-  border-color: #2b2b2b;
+  border-color: #ef3f9e;
   box-shadow: none;
 }
 
@@ -481,7 +481,7 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
 .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
-  background: #2b2b2b;
+  background: #ef3f9e;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
@@ -489,7 +489,7 @@ body {
 }
 
 .chiller-theme .sidebar-footer {
-  background: #2b2b2b;
+  background: #ef3f9e;
   box-shadow: 0px -1px 5px #131212;
   border-top: 1px solid #3a3a3a;
 }

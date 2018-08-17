@@ -1,32 +1,19 @@
-import { Injectable } from '@angular/core';
-import {Http, RequestMethod, Response, ResponseContentType} from '@angular/http';
-import 'rxjs/add/operator/catch';
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
 import {Router} from '@angular/router';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
+
+export const TOKEN_NAME = 'TOKEN_ITSELF';
+export const TOKEN_EXPIRE = 'TOKEN_EXPIRE';
+export const TOKEN_ROLES = 'TOKEN_ROLE';
 
 @Injectable()
 export class ClientService {
   private API_URL: string = localStorage.getItem('api');
 
-  constructor(private http: Http, private router: Router) { }
-
-  post(path: string, data?: any) {
-    return new Promise((resolve, reject) => {
-      if (data == null) {
-        data = '{}';
-      }
-      this.http.post(this._apiUrl() + '/api/v1/' + path, data)
-        .map(res => res.json())
-        .subscribe(
-          (result) => resolve(result),
-          (error: Response) => {
-            if (error.status === 401) {
-              this.router.navigateByUrl('/auth/login');
-            }
-            reject(error);
-          }
-        );
-    });
+  constructor(private http: Http, private router: Router) {
   }
 
   auth(data: any) {
@@ -40,15 +27,19 @@ export class ClientService {
     });
   }
 
-  download(id: string) {
+  post(path: string, data?: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(this._apiUrl() + '/export/caps/' + id, {}, {responseType: ResponseContentType.Blob})
-        .map(x => x.blob())
+      if (data == null) {
+        data = '{}';
+      }
+      this.http.post(this._apiUrl() + '/api/' + path, data)
+        .map(res => res.json())
         .subscribe(
-          (result: Blob) => resolve(result),
+          (result) => resolve(result),
           (error: Response) => {
             if (error.status === 401) {
-              this.router.navigateByUrl('/auth/login');
+              this.logout();
+              window.location.href = '/';
             }
             reject(error);
           }
@@ -56,7 +47,7 @@ export class ClientService {
     });
   }
 
-  loadEnv() {
+  private loadEnv() {
     new Promise((resolve, reject) => {
       this.http.get('./tsconfig.json')
         .subscribe((result) => resolve(result), err => reject(err));
@@ -77,4 +68,11 @@ export class ClientService {
     }
     return this.API_URL;
   }
+
+  logout() {
+    localStorage.removeItem(TOKEN_NAME);
+    localStorage.removeItem(TOKEN_ROLES);
+    localStorage.removeItem(TOKEN_EXPIRE);
+  }
+
 }

@@ -1,21 +1,21 @@
-import { Injectable } from '@angular/core';
-import {Response} from '@angular/http';
+import {Injectable} from '@angular/core';
 import {ClientService} from './client.service';
-import {Router} from '@angular/router';
+import {Response} from '@angular/http';
+
+export const TOKEN_NAME = 'TOKEN_ITSELF';
+export const TOKEN_EXPIRE = 'TOKEN_EXPIRE';
+export const TOKEN_ROLES = 'TOKEN_ROLE';
 
 interface UserToken {
-  token: string,
-  expireTime: string,
-  roles: string[]
+  token: string;
+  expireTime: string;
+  roles: string[];
 }
-
-export const TOKEN_NAME = 'jwt_token';
-export const TOKEN_EXPIRE = 'jwt_token_expire';
-export const TOKEN_ROLES = 'jwt_token_roles';
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private client: ClientService, private router: Router) { }
+  constructor(private client: ClientService) {
+  }
 
   login(data: any, errorCallback) {
     this.client.auth(data)
@@ -29,12 +29,8 @@ export class AuthenticationService {
     localStorage.removeItem(TOKEN_EXPIRE);
   }
 
-  loggedIn(): boolean {
+  loggedIn() {
     return localStorage.getItem(TOKEN_NAME) != null;
-  }
-
-  getToken(): string {
-    return localStorage.getItem(TOKEN_NAME);
   }
 
   _loginAction(result: UserToken) {
@@ -42,7 +38,22 @@ export class AuthenticationService {
       localStorage.setItem(TOKEN_NAME, result.token);
       localStorage.setItem(TOKEN_EXPIRE, result.expireTime);
       localStorage.setItem(TOKEN_ROLES, JSON.stringify(result.roles));
+      console.log(result);
       window.location.href = '/';
     }
+  }
+
+  getToken() {
+    return localStorage.getItem(TOKEN_NAME);
+  }
+
+  getDatas() {
+    return 'TOKEN ' + localStorage.getItem(TOKEN_NAME) +
+      '\nEXPIRE TIME ' + localStorage.getItem(TOKEN_EXPIRE) +
+      '\nROLE ' + localStorage.getItem(TOKEN_ROLES);
+  }
+
+  getRole() {
+    return localStorage.getItem(TOKEN_ROLES);
   }
 }

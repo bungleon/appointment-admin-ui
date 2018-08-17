@@ -1,20 +1,27 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 
-import { Routes, RouterModule } from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {MerchantComponent} from './merchant/merchant.component';
-import {AuthGuard} from './login/auth-guard.service';
+import {AuthGuard} from './services/auth-guard.service';
+import {DashboardComponent} from './dashboard/dashboard.component';
+
 
 export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  }  ,
+  },
   {
     path: 'user',
     component: UserComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -24,15 +31,16 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'dashboard'
   }
-  ];
+];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, {
+  imports: [RouterModule.forRoot(routes, {
     enableTracing: false,
     useHash: true
-  }) ],
-  exports: [ RouterModule ]
+  })],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

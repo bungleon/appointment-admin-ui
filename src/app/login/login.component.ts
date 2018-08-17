@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AuthenticationService} from './authentication.service';
+import {AuthenticationService} from '../services/authentication.service';
 
 
 @Component({
@@ -12,20 +12,19 @@ export class LoginComponent {
   };
   loading = false;
   alert = '';
-  auth = new AuthenticationService();
 
-  constructor() {
+  constructor(private auth: AuthenticationService) {
+    this.auth.logout();
   }
 
   login() {
     this.auth.logout();
     this.loading = true;
     this.auth.login(this.form, (e: Response) => {
-      /*console.log(e);
       const ej: any = e ? e.json() : {};
       if (ej.message) {
         this.alert = ej.message;
-      }*/
+      }
       this.loading = false;
     });
   }
