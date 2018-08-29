@@ -16,6 +16,7 @@ import {AuthenticationService} from './services/authentication.service';
 import {ClientService} from './services/client.service';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {JwtParserService} from './services/jwt-parser.service';
+import {ModalModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {JwtParserService} from './services/jwt-parser.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    ModalModule.forRoot()
   ],
   providers: [{
     provide: LocationStrategy,
