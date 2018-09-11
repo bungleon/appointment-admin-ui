@@ -17,6 +17,8 @@ import {ClientService} from './services/client.service';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {JwtParserService} from './services/jwt-parser.service';
 import {ModalModule} from 'ngx-bootstrap';
+import {WorkingHoursComponent} from './working-hours/working-hours.component';
+import {AngularDateTimePickerModule} from 'angular2-datetimepicker';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import {ModalModule} from 'ngx-bootstrap';
     LoginComponent,
     MerchantComponent,
     UserComponent,
+    WorkingHoursComponent,
     DashboardComponent
   ],
   imports: [
@@ -31,6 +34,7 @@ import {ModalModule} from 'ngx-bootstrap';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    AngularDateTimePickerModule,
     HttpModule,
     ModalModule.forRoot()
   ],

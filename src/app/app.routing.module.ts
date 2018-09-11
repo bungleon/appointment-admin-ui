@@ -7,6 +7,7 @@ import {UserComponent} from './user/user.component';
 import {MerchantComponent} from './merchant/merchant.component';
 import {AuthGuard} from './services/auth-guard.service';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {WorkingHoursComponent} from './working-hours/working-hours.component';
 
 
 export const routes: Routes = [
@@ -27,6 +28,11 @@ export const routes: Routes = [
   {
     path: 'merchant',
     component: MerchantComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'working-hours',
+    component: WorkingHoursComponent,
     canActivate: [AuthGuard]
   },
   {
