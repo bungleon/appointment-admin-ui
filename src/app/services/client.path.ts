@@ -13,5 +13,7 @@ export const ClientUrl = {
   USER_DETAIL: 'user/detail',
   // Working Hours
   WORKING_HOUR_LIST: 'work-hour/list',
-  WORKING_HOUR_UPDATE: 'work-hour/update'
+  WORKING_HOUR_UPDATE: 'work-hour/update',
+  // Appointment
+  APPOINTMENT_LIST: 'appointment/list'
 };

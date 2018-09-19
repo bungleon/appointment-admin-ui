@@ -5,17 +5,23 @@ import {ClientService} from '../services/client.service';
 import {moment} from 'ngx-bootstrap/chronos/test/chain';
 import {TimePeriodFilter, WorkingHours, WorkingHoursList} from './model/working-hours';
 import {ModalDirective} from 'ngx-bootstrap';
+import {ModalSettings} from '../shared/modal-settings';
 
 @Component({
   selector: 'app-working-hours',
   templateUrl: 'working-hours.component.html',
 })
 export class WorkingHoursComponent implements OnInit {
+  public loading = false;
+  public errorMessage: string;
   public merchants;
   public workingHours;
+  public modalSettings = ModalSettings;
+  public appointeeSettings = ModalSettings;
   public TimePeriodFilter = TimePeriodFilter;
   public createRequest: any = {};
   public timePeriods: any = {};
+  public appointeeList: any = {};
   public form = {
     fromDate: new Date(),
     toDate: new Date(),
@@ -73,6 +79,16 @@ export class WorkingHoursComponent implements OnInit {
     this.createRequest.date = date;
   }
 
+  appointeeModalOpen(apiKey: string, date: string, _modal: ModalDirective) {
+    const searchJson: any = {
+      apiKey: apiKey,
+      date: date
+    };
+    this.client.post(ClientUrl.APPOINTMENT_LIST, searchJson)
+      .then((item: WorkingHoursList) => this.appointeeList = item);
+    _modal.show();
+  }
+
   editModalOpen(workingHour: WorkingHours, _modal: ModalDirective) {
 
     this.createRequest = {
@@ -114,5 +130,9 @@ export class WorkingHoursComponent implements OnInit {
       const e: any = err.json();
       this.errorMessage = e.message;
     });
+  }
+
+  getAppointeeUser(id: string, _modal: ModalDirective) {
+    console.log(id);
   }
 }
